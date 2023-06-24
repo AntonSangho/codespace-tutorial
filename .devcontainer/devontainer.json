@@ -1,0 +1,69 @@
+{
+    "name": "DevContainer 이름",
+    
+    "build": {
+        "dockerfile": "./Dockerfile",
+        "context": ".",
+        "args": {
+            "VARIANT": "7.0"
+        }
+    },
+    
+    "forwardPorts": [
+        5000, 5001
+    ],
+    
+    "features": {
+        "ghcr.io/devcontainers/features/azure-cli:latest": {
+            "version": "latest"
+        },
+    
+        "ghcr.io/devcontainers/features/github-cli:latest": {
+            "version": "latest"
+        },
+    
+        "ghcr.io/devcontainers/features/node:latest": {
+            "version": "lts",
+            "nodeGypDependencies": true,
+            "nvmInstallPath": "/usr/local/share/nvm"
+        },
+    
+        "ghcr.io/devcontainers/features/common-utils:latest": {
+            "installZsh": true,
+            "installOhMyZsh": true,
+            "upgradePackages": true,
+            "username": "vscode",
+            "uid": "1000",
+            "gid": "1000"
+        }
+    },
+    
+    "overrideFeatureInstallOrder": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ],
+    
+    "customizations": {
+      "vscode": {
+        "extensions": [
+            "GitHub.copilot",
+            "GitHub.copilot-labs",
+            "GitHub.copilot-chat",
+
+            "ms-dotnettools.vscode-dotnet-pack",
+            "kreativ-software.csharpextensions",
+
+            "ms-vscode.vscode-node-azure-pack",
+            "ms-azuretools.vscode-bicep"
+        ],
+    
+        "settings": {
+            "editor.minimap.enabled": false,
+            "explorer.sortOrder": "type"
+        }
+      }
+    },
+  
+    "onCreateCommand": "/bin/bash ./.devcontainer/on-create.sh > ~/on-create.log",
+  
+    "remoteUser": "vscode"
+  }
